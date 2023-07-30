@@ -3,4 +3,17 @@ LABEL org.opencontainers.image.authors="toughIQ@gmail.com"
 
 RUN apt-get update && apt-get upgrade -y
 
+RUN apt-get install -y git build-essential cmake g++ pkgconf libfftw3-dev libvolk2-dev libpng-dev libluajit-5.1-dev \ 
+    libnng-dev \
+    ocl-icd-opencl-dev
+    
+RUN git clone https://github.com/SatDump/SatDump.git
+WORKDIR /SatDump
+    
+RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_GUI=OFF -DPLUGIN_HACKRF_SDR_SUPPORT=OFF
+RUN make -j`nproc`
 
+RUN make install
+
+
+    
