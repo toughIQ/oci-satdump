@@ -5,6 +5,7 @@ RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y git build-essential cmake g++ pkgconf libfftw3-dev libvolk2-dev libpng-dev libluajit-5.1-dev \ 
     libnng-dev \
+    libzstd-dev \
     ocl-icd-opencl-dev
     
 RUN git clone https://github.com/SatDump/SatDump.git
